@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS scheduleTask;
+
+CREATE TABLE scheduleTask (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  names VARCHAR(250) NOT NULL,
+  recurrency VARCHAR(30) NOT NULL,
+  code VARCHAR(8000) NOT NULL,
+  startedDateTime TIMESTAMP NOT NULL,
+  createdDateTime TIMESTAMP
+);

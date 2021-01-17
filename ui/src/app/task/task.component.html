@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="card">
+      <h3 class="text-center">Task list</h3>
+      <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>recurrency</th>
+                <th>code</th>
+                <th>delete</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks">
+                    <td>{{task.id}}</td>
+                    <td>{{task.name}}</td>
+                    <td>{{task.recurrency}}</td>
+                    <td>{{task.code}}</td>
+                    <td><button (click)="ngDelete(task.id)">delete</button></td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+</div>
