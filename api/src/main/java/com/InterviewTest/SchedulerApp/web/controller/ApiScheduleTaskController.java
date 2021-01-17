@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.support.CronSequenceGenerator;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,10 +57,15 @@ public class ApiScheduleTaskController {
 		return new ResponseEntity<>(taskToDTOConverter.convert(tasks), HttpStatus.OK);
 	}
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(method = RequestMethod.POST, value = "/", produces = "application/json")
 	public ResponseEntity<ScheduleTaskDTO> addTask(@RequestBody ScheduleTaskDTO dto) throws InterruptedException, ExecutionException{
 		ScheduleTask saved = null;
 		if(dto != null) {
+
+			if(!CronSequenceGenerator.isValidExpression(dto.getRecurrency())) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
 			dto.setId(null);
 			saved = taskService.save(dtoToTaskConverter.convert(dto));
 
