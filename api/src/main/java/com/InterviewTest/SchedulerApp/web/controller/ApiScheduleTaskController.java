@@ -24,7 +24,7 @@ import com.InterviewTest.SchedulerApp.web.dto.ScheduleTaskDTO;
 
 @RestController
 @RequestMapping(value="api/tasks")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:8888")
 public class ApiScheduleTaskController {
 	
 	@Autowired
